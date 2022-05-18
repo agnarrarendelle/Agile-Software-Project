@@ -1,76 +1,80 @@
-
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Header from "./components/Header";
 import List from "./components/List";
 import Bottom from "./components/Bottom";
 import "./App.css";
 
+interface States {
+  todos: Array<TodoObJ>;
+}
 
-
-class App extends Component {
-  state = {
-    todos:[
-      {id:"001",title:"吃饭",done:true},
-      {id:"002",title:"睡觉",done:true},
-      {id:"003",title:"打豆豆",done:false}
-    ]
+class App extends Component<any, States> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      todos: [],
+    };
   }
 
-  addTodo = (todoObj:TodoObJ) => {
-    const {todos} = this.state;
-    const newTodos = [todoObj,...todos];
+  addTodo = (todoObj: TodoObJ) => {
+    const { todos } = this.state;
+    const newTodos = [todoObj, ...todos];
     this.setState({
-      todos:newTodos
-    })
-  }
+      todos: newTodos,
+    });
+  };
 
-  checkTodo = (id:string,done:boolean) => {
-    const {todos} = this.state;
-    const newTodos = todos.map(todoObj => {
-      if(todoObj.id === id) return {...todoObj,done:done}
+  checkTodo = (id: string, done: boolean) => {
+    const { todos } = this.state;
+    const newTodos = todos.map((todoObj) => {
+      if (todoObj.id === id) return { ...todoObj, done: done };
       else return todoObj;
-    })
+    });
     this.setState({
-      todos:newTodos
-    })
-  }
+      todos: newTodos,
+    });
+  };
 
-  deleteTodo = (id:string) => {
-    const {todos} = this.state;
-    const newTodos = todos.filter(todo => todo.id !== id);
+  deleteTodo = (id: string) => {
+    const { todos } = this.state;
+    const newTodos = todos.filter((todo) => todo.id !== id);
     this.setState({
-      todos:newTodos
-    })
-  }
+      todos: newTodos,
+    });
+  };
 
-  checkAllTodo = (done:boolean) => {
-    const {todos} = this.state;
-    const newTodos = todos.map(todo => {
-      return {...todo,done};
-    })
-    this.setState({todos:newTodos});
-  }
+  checkAllTodo = (done: boolean) => {
+    const { todos } = this.state;
+    const newTodos = todos.map((todo) => {
+      return { ...todo, done };
+    });
+    this.setState({ todos: newTodos });
+  };
 
   clearAllTodoDone = () => {
-    const {todos} = this.state;
-    const newTodos = todos.filter(todo => !todo.done );
-    this.setState({todos:newTodos});
-  }
+    const { todos } = this.state;
+    const newTodos = todos.filter((todo) => !todo.done);
+    this.setState({ todos: newTodos });
+  };
 
   render() {
-    const {todos} = this.state;
-    const {addTodo,checkTodo,deleteTodo} = this;
-    
+    const { todos } = this.state;
+    const { addTodo, checkTodo, deleteTodo } = this;
+
     return (
-    <div className="todo-container">
-      <div className="todo-wrap">
-        <Header addTodo={addTodo}/>
-        <List todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo}/>
-        <Bottom todos={todos} checkAllTodo={this.checkAllTodo} clearAllTodoDone={this.clearAllTodoDone}/>
+      <div className="todo-container">
+        <div className="todo-wrap">
+          <Header addTodo={addTodo} />
+          <List todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo} />
+          <Bottom
+            todos={todos}
+            checkAllTodo={this.checkAllTodo}
+            clearAllTodoDone={this.clearAllTodoDone}
+          />
+        </div>
       </div>
-    </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

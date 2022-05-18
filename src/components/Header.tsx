@@ -17,7 +17,8 @@ export default class Header extends Component<Props> {
         const todoObj = {
           id:nanoid(),
           title:value,
-          done:false
+          done:false,
+          addedTime: new Date().toLocaleString()
         }
         this.props.addTodo(todoObj);
     

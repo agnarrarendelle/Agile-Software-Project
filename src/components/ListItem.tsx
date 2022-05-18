@@ -5,6 +5,7 @@ interface Props{
     id:string
     title:string
     done:boolean
+    addedTime:string
     checkTodo:(id: string, done: boolean) => void
     deleteTodo:(id: string) => void
 }
@@ -26,13 +27,13 @@ export default class ListItem extends Component<Props> {
     }
   
     render() {
-      const {id,title,done} = this.props;
+      const {id,title,done, addedTime} = this.props;
       const {handleChange,handleClick} = this;
       return (
         <li>
           <label>
             <input type="checkbox" defaultChecked={done} onChange={handleChange(id)}/>
-            <span>{title}</span>
+            <span>{`${title}  ${addedTime}`}</span>
           </label>
           <button className="btn btn-danger" onClick={handleClick(id)}>Delete</button> 
         </li>
