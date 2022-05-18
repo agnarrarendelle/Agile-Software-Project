@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 import "./ListItem.css";
 
-export default class Item extends Component {
+interface Props{
+    id:string
+    title:string
+    done:boolean
+    checkTodo:(id: string, done: boolean) => void
+    deleteTodo:(id: string) => void
+}
 
-    handleChange = (id) => {
-      return (event) => {
+export default class ListItem extends Component<Props> {
+
+    handleChange = (id:string) => {
+      return (event:React.ChangeEvent<HTMLInputElement>) => {
         this.props.checkTodo(id,event.target.checked);
       }
     }
   
-    handleClick = (id) => {
+    handleClick = (id:string) => {
       return () => {
-        if(window.confirm("确定删除吗?")){
+        if(window.confirm("Are you sure you want to delete this task?")){
           this.props.deleteTodo(id);
         }
       }
@@ -26,7 +34,7 @@ export default class Item extends Component {
             <input type="checkbox" defaultChecked={done} onChange={handleChange(id)}/>
             <span>{title}</span>
           </label>
-          <button className="btn btn-danger" onClick={handleClick(id)}>删除</button> 
+          <button className="btn btn-danger" onClick={handleClick(id)}>Delete</button> 
         </li>
       )
     }
