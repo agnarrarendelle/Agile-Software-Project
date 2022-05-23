@@ -3,12 +3,12 @@ import "./Bottom.css";
 
 interface Props {
   todos: Array<TodoObJ>;
-  checkAllTodo:(done: boolean) => void
-  clearAllTodoDone:() => void
+  checkAllTodo: (isDone: boolean) => void;
+  clearAllTodoDone: () => void;
 }
 
 export default class Footer extends Component<Props> {
-  handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.props.checkAllTodo(event.target.checked);
   };
 
@@ -18,7 +18,10 @@ export default class Footer extends Component<Props> {
 
   render() {
     const { todos } = this.props;
-    const doneTotal = todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0);
+    const doneTotal = todos.reduce(
+      (pre, todo) => pre + (todo.isDone ? 1 : 0),
+      0
+    );
     const total = todos.length;
 
     return (

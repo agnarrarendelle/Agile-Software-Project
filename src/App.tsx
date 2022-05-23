@@ -24,10 +24,10 @@ class App extends Component<any, States> {
     });
   };
 
-  checkTodo = (id: string, done: boolean) => {
+  checkTodo = (id: string, isDone: boolean) => {
     const { todos } = this.state;
     const newTodos = todos.map((todoObj) => {
-      if (todoObj.id === id) return { ...todoObj, done: done };
+      if (todoObj.id === id) return { ...todoObj, isDone: isDone };
       else return todoObj;
     });
     this.setState({
@@ -36,24 +36,24 @@ class App extends Component<any, States> {
   };
 
   deleteTodo = (id: string) => {
-    const { todos } = this.state; 
+    const { todos } = this.state;
     const newTodos = todos.filter((todo) => todo.id !== id);
     this.setState({
       todos: newTodos,
     });
   };
 
-  checkAllTodo = (done: boolean) => {
+  checkAllTodo = (isDone: boolean) => {
     const { todos } = this.state;
     const newTodos = todos.map((todo) => {
-      return { ...todo, done };
+      return { ...todo, isDone };
     });
     this.setState({ todos: newTodos });
   };
 
   clearAllTodoDone = () => {
     const { todos } = this.state;
-    const newTodos = todos.filter((todo) => !todo.done);
+    const newTodos = todos.filter((todo) => !todo.isDone);
     this.setState({ todos: newTodos });
   };
 

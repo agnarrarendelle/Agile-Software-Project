@@ -4,7 +4,7 @@ import "./List.css";
 
 interface Props {
   todos: Array<TodoObJ>;
-  checkTodo: (id: string, done: boolean) => void;
+  checkTodo: (id: string, isDone: boolean) => void;
   deleteTodo: (id: string) => void;
 }
 
