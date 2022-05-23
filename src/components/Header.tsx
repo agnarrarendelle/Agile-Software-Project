@@ -7,12 +7,11 @@ interface Props{
 }
 export default class Header extends Component<Props> {
     add = (event:React.KeyboardEvent<HTMLInputElement>  ) => {
-        const {target,keyCode} = event;
+        const {target,key} = event;
         let value = (target as HTMLTextAreaElement).value
         //判断是否是回车键
-        if(keyCode!==13) return;
+        if(key!=='Enter' || value.trim().length === 0) return;
     
-        if(!(value.trim())) return;
     
         const todoObj = {
           id:nanoid(),

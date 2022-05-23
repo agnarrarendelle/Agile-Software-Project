@@ -28,14 +28,13 @@ export default class ListItem extends Component<Props> {
   
     render() {
       const {id,title,done, addedTime} = this.props;
-      const {handleChange,handleClick} = this;
       return (
         <li>
           <label>
-            <input type="checkbox" defaultChecked={done} onChange={handleChange(id)}/>
-            <span>{`${title}  ${addedTime}`}</span>
+            <input type="checkbox" defaultChecked={done} onChange={this.handleChange(id)}/>
+            <span>{`   ${title}  ${addedTime}`}</span>
           </label>
-          <button className="btn btn-danger" onClick={handleClick(id)}>Delete</button> 
+          <button className="btn btn-danger" onClick={this.handleClick(id)}>Delete</button> 
         </li>
       )
     }

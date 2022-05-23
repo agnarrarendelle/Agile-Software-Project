@@ -36,7 +36,7 @@ class App extends Component<any, States> {
   };
 
   deleteTodo = (id: string) => {
-    const { todos } = this.state;
+    const { todos } = this.state; 
     const newTodos = todos.filter((todo) => todo.id !== id);
     this.setState({
       todos: newTodos,
@@ -59,13 +59,16 @@ class App extends Component<any, States> {
 
   render() {
     const { todos } = this.state;
-    const { addTodo, checkTodo, deleteTodo } = this;
 
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header addTodo={addTodo} />
-          <List todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo} />
+          <Header addTodo={this.addTodo} />
+          <List
+            todos={todos}
+            checkTodo={this.checkTodo}
+            deleteTodo={this.deleteTodo}
+          />
           <Bottom
             todos={todos}
             checkAllTodo={this.checkAllTodo}
