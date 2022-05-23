@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "./components/Header";
+import TaskBar from "./components/TaskBar";
 import List from "./components/List";
 import Bottom from "./components/Bottom";
 import "./App.css";
@@ -48,7 +48,7 @@ class App extends Component<any, States> {
     const newTodos = todos.map((todo) => {
       return { ...todo, isDone };
     });
-    this.setState({ todos: newTodos });
+     this.setState({ todos: newTodos });
   };
 
   clearAllTodoDone = () => {
@@ -63,7 +63,7 @@ class App extends Component<any, States> {
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header addTodo={this.addTodo} />
+          <TaskBar addTodo={this.addTodo} />
           <List
             todos={todos}
             checkTodo={this.checkTodo}
