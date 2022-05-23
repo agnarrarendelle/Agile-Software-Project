@@ -33,12 +33,13 @@ class ListItem extends Component<Props> {
 
   render() {
     const { title, isDone, addedTime } = this.props;
+    console.log(isDone)
     return (
       <li>
         <label>
           <input
             type="checkbox"
-            defaultChecked={isDone}
+            checked={isDone}
             onChange={this.handleChange}
           />
           <span>{`   ${title}  ${addedTime}`}</span>
