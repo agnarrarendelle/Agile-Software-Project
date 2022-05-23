@@ -4,15 +4,24 @@ import { nanoid } from "nanoid";
 
 //This Interface defines properties passed to component TaskBar
 interface Props {
+  //Event handler defined in App component
   addTodo: (todoObj: TodoObJ) => void;
 }
 export default class TaskBar extends Component<Props> {
+  //Triggered when users enter anything in the TaskBar
+  //First, it checks whether the Users hit Enter Key or do not enter text value
+  //and return from the function if either is true
+  //Second, it creates a new TodoObj and call addTodo function in App component
+  //to add the new task to the Todo List
+  //Finally, after the new task has been added to the Todo List
+  //it would clear the TaskBar
   add = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { target, key } = event;
     let value = (target as HTMLTextAreaElement).value;
     if (key !== "Enter" || value.trim().length === 0) return;
 
-    const todoObj = {
+    const todoObj:TodoObJ = {
+      //get an unique ID with the nanoid library
       id: nanoid(),
       title: value,
       isDone: false,
@@ -24,13 +33,12 @@ export default class TaskBar extends Component<Props> {
   };
 
   render() {
-    const { add } = this;
     return (
       <div className="task-bar">
         <input
           type="text"
           placeholder="Please enter your the name of your task"
-          onKeyUp={add}
+          onKeyUp={this.add}
         />
       </div>
     );
