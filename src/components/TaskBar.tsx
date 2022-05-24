@@ -7,7 +7,7 @@ interface Props {
   //Event handler defined in App component
   addTodo: (todoObj: TodoObJ) => void;
 }
-export default class TaskBar extends Component<Props> {
+class TaskBar extends Component<Props> {
   //Triggered when users enter anything in the TaskBar
   //First, it checks whether the Users hit Enter Key or do not enter text value
   //and return from the function if either is true
@@ -44,3 +44,5 @@ export default class TaskBar extends Component<Props> {
     );
   }
 }
+
+export default TaskBar

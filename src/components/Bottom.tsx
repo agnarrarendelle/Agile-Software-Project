@@ -11,7 +11,7 @@ interface Props {
   clearAllTodoDone: () => void;
 }
 
-export default class Footer extends Component<Props> {
+class Bottom extends Component<Props> {
   //Triggered when users click the check box of the Bottom
   //it would then checkAllTodo in App componet with the boolean value of the check box
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,3 +58,4 @@ export default class Footer extends Component<Props> {
     );
   }
 }
+export default Bottom
