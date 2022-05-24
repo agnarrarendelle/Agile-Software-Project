@@ -24,7 +24,7 @@ class App extends Component<any, States> {
   //then call setState with the new array to re-render the page
   addTodo = (todoObj: TodoObJ) => {
     const { todos } = this.state;
-    const newTodos = [todoObj, ...todos];
+    const newTodos:Array<TodoObJ> = [todoObj, ...todos];
     this.setState({
       todos: newTodos,
     });
@@ -38,7 +38,7 @@ class App extends Component<any, States> {
   //then it would call setState with the new array to re-render the page
   checkTodo = (id: string, isDone: boolean) => {
     const { todos } = this.state;
-    const newTodos = todos.map((todoObj) => {
+    const newTodos:Array<TodoObJ> = todos.map((todoObj) => {
       if (todoObj.id === id) return { ...todoObj, isDone: isDone };
       else return todoObj;
     });
@@ -54,7 +54,7 @@ class App extends Component<any, States> {
   //then it would call setState with the new array to re-render the page
   deleteTodo = (id: string) => {
     const { todos } = this.state;
-    const newTodos = todos.filter((todo) => todo.id !== id);
+    const newTodos:Array<TodoObJ> = todos.filter((todo) => todo.id !== id);
     this.setState({
       todos: newTodos,
     });
@@ -66,7 +66,7 @@ class App extends Component<any, States> {
   //then it would call setState with the new array to re-render the page
   checkAllTodo = (isDone: boolean) => {
     const { todos } = this.state;
-    const newTodos = todos.map((todo) => {
+    const newTodos:Array<TodoObJ> = todos.map((todo) => {
       return { ...todo, isDone };
     });
     this.setState({ todos: newTodos });
@@ -80,7 +80,7 @@ class App extends Component<any, States> {
 
   clearAllTodoDone = () => {
     const { todos } = this.state;
-    const newTodos = todos.filter((todo) => !todo.isDone);
+    const newTodos:Array<TodoObJ> = todos.filter((todo) => !todo.isDone);
     this.setState({ todos: newTodos });
   };
 
