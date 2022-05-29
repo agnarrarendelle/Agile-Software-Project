@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TaskBar from "./components/TaskBar";
 import List from "./components/List";
 import Bottom from "./components/Bottom";
+import SortOptions from "./components/SortOptions";
 import "./App.css";
 
 //This Interface defines the states that App component will maintain
@@ -24,7 +25,7 @@ class App extends Component<any, States> {
   //then call setState with the new array to re-render the page
   addTodo = (todoObj: TodoObJ) => {
     const { todos } = this.state;
-    const newTodos:Array<TodoObJ> = [todoObj, ...todos];
+    const newTodos: Array<TodoObJ> = [todoObj, ...todos];
     this.setState({
       todos: newTodos,
     });
@@ -38,7 +39,7 @@ class App extends Component<any, States> {
   //then it would call setState with the new array to re-render the page
   checkTodo = (id: string, isDone: boolean) => {
     const { todos } = this.state;
-    const newTodos:Array<TodoObJ> = todos.map((todoObj) => {
+    const newTodos: Array<TodoObJ> = todos.map((todoObj) => {
       if (todoObj.id === id) return { ...todoObj, isDone: isDone };
       else return todoObj;
     });
@@ -54,7 +55,7 @@ class App extends Component<any, States> {
   //then it would call setState with the new array to re-render the page
   deleteTodo = (id: string) => {
     const { todos } = this.state;
-    const newTodos:Array<TodoObJ> = todos.filter((todo) => todo.id !== id);
+    const newTodos: Array<TodoObJ> = todos.filter((todo) => todo.id !== id);
     this.setState({
       todos: newTodos,
     });
@@ -66,7 +67,7 @@ class App extends Component<any, States> {
   //then it would call setState with the new array to re-render the page
   checkAllTodo = (isDone: boolean) => {
     const { todos } = this.state;
-    const newTodos:Array<TodoObJ> = todos.map((todo) => {
+    const newTodos: Array<TodoObJ> = todos.map((todo) => {
       return { ...todo, isDone };
     });
     this.setState({ todos: newTodos });
@@ -80,7 +81,26 @@ class App extends Component<any, States> {
 
   clearAllTodoDone = () => {
     const { todos } = this.state;
-    const newTodos:Array<TodoObJ> = todos.filter((todo) => !todo.isDone);
+    const newTodos: Array<TodoObJ> = todos.filter((todo) => !todo.isDone);
+    this.setState({ todos: newTodos });
+  };
+
+  sortTodo = (option: string) => {
+    const newTodos = [...this.state.todos];
+    switch (option) {
+      case "date":
+        newTodos.sort((a: TodoObJ, b: TodoObJ) => {
+          return Date.parse(a.addedTime) - Date.parse(b.addedTime);
+        });
+        break;
+      case "name":
+        newTodos.sort((a: TodoObJ, b: TodoObJ) => {
+          return a.title.localeCompare(b.title);
+        });
+        break;
+      default:
+        break;
+    }
     this.setState({ todos: newTodos });
   };
 
@@ -91,6 +111,10 @@ class App extends Component<any, States> {
       <div className="todo-container">
         <div className="todo-wrap">
           <TaskBar addTodo={this.addTodo} />
+          <SortOptions
+            options={["name", "date"]}
+            sortTodo={this.sortTodo}
+          ></SortOptions>
           <List
             todos={todos}
             checkTodo={this.checkTodo}
