@@ -9,4 +9,11 @@ interface TodoObJ {
   isDone: boolean;
   //The date and time at which the task has been added to the Todo List
   addedTime: string;
+  priorityLevel:string;
+}
+
+
+interface PriorityLevelObj{
+  level:number
+  PriorityLevelName:string
 }
