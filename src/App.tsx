@@ -98,6 +98,11 @@ class App extends Component<any, States> {
           return a.title.localeCompare(b.title);
         });
         break;
+      case 'priority level':
+        newTodos.sort((a: TodoObJ, b: TodoObJ) => {
+          return a.priorityLevel.localeCompare(b.priorityLevel);
+        });
+        break;
       default:
         break;
     }
@@ -112,7 +117,7 @@ class App extends Component<any, States> {
         <div className="todo-wrap">
           <TaskBar addTodo={this.addTodo} />
           <SortOptions
-            options={["name", "date"]}
+            options={["name", "date", "priority level"]}
             sortTodo={this.sortTodo}
           ></SortOptions>
           <List
