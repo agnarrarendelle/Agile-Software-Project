@@ -12,31 +12,53 @@ interface Props {
   deleteTodo: (id: string) => void;
 }
 
-class List extends Component<Props> {
-  //When called, this function would first iterate through all tasks passed from App component
-  //then extract required properties for ListItem component from each task object(TodoObj)
-  //Finally, it would return an array of ListItem components that would be displayed on screen 
-  getListItems = () => {
-    const listItems = this.props.todos.map((eachTodo) => {
+// class List extends Component<Props> {
+//   //When called, this function would first iterate through all tasks passed from App component
+//   //then extract required properties for ListItem component from each task object(TodoObj)
+//   //Finally, it would return an array of ListItem components that would be displayed on screen
+//   getListItems = () => {
+//     const listItems = this.props.todos.map((eachTodo) => {
+//       return (
+//         <ListItem
+//           key={eachTodo.id}
+//           {...eachTodo}
+//           checkTodo={this.props.checkTodo}
+//           deleteTodo={this.props.deleteTodo}
+//         />
+//       );
+//     });
+//     return listItems;
+//   };
+
+//   render() {
+//     return (
+//       <ul className="todo-main">
+//         {this.getListItems()}
+//       </ul>
+//     );
+//   }
+// }
+
+function List(props: Props): React.ReactElement {
+  const getListItems = () => {
+    const listItems = props.todos.map((eachTodo) => {
       return (
         <ListItem
           key={eachTodo.id}
           {...eachTodo}
-          checkTodo={this.props.checkTodo}
-          deleteTodo={this.props.deleteTodo}
+          checkTodo={props.checkTodo}
+          deleteTodo={props.deleteTodo}
         />
       );
     });
     return listItems;
   };
 
-  render() {
-    return (
+  return (
       <ul className="todo-main">
-        {this.getListItems()}
+        {getListItems()}
       </ul>
     );
-  }
 }
 
 export default List;
