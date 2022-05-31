@@ -7,6 +7,7 @@ interface Props {
   title: string;
   isDone: boolean;
   addedTime: string;
+  priorityLevel:string;
   //Called in HandleChange when the check box of a task has been clicked
   checkTodo: (id: string, isDone: boolean) => void;
   //Called in handleClick when user click on delete bottom next to a task
@@ -32,10 +33,9 @@ class ListItem extends Component<Props> {
   };
 
   render() {
-    const { title, isDone, addedTime } = this.props;
-    console.log(isDone)
+    const { title, isDone, addedTime, priorityLevel } = this.props;
     return (
-      <li>
+      <li className={`level-${priorityLevel}`}>
         <label>
           <input
             type="checkbox"
