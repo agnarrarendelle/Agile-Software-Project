@@ -11,7 +11,7 @@ interface States {
   //An array of todo tasks that will be modified and updated based on user's actions
   todos: Array<TodoObJ>;
 }
-
+ 
 const App=()=> {
   const [todos, setTodos] = useState<Array<TodoObJ>>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
