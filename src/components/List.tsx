@@ -11,15 +11,21 @@ interface Props {
   //An event handler passed from App component to ListItem via List
   deleteTodo: (id: string) => void;
 
-  openModalAndSetTitleId:(title:string,id:string)=>void
-  
+  openModalAndSetTitleId: (title: string, id: string) => void;
+
+  filter: string;
 }
 
-
-
-function List(props: Props): React.ReactElement {
+const List = (props: Props): React.ReactElement => {
   const getListItems = () => {
-    const listItems = props.todos.map((eachTodo) => {
+    console.log(props.filter)
+    let todos: TodoObJ[];
+    if (props.filter === "") {
+      todos = props.todos;
+    } else {
+       todos = props.todos.filter(todo=>todo.title.includes(props.filter))
+    }
+    const listItems = todos.map((eachTodo) => {
       return (
         <ListItem
           key={eachTodo.id}
@@ -33,11 +39,7 @@ function List(props: Props): React.ReactElement {
     return listItems;
   };
 
-  return (
-      <ul className="todo-main">
-        {getListItems()}
-      </ul>
-    );
-}
+  return <ul className="todo-main">{getListItems()}</ul>;
+};
 
 export default List;

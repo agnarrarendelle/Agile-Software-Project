@@ -1,31 +1,31 @@
-import {  useState } from "react";
+import { useState } from "react";
 import TaskBar from "./components/TaskBar";
 import List from "./components/List";
 import Bottom from "./components/Bottom";
 import SortOptions from "./components/SortOptions";
 import "./App.css";
-import Modal from "./components/Modal"
+import Modal from "./components/Modal";
+import SearchBar from "./components/SearchBar";
 
- 
-const App=()=> {
+const App = () => {
   const [todos, setTodos] = useState<Array<TodoObJ>>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [modalItemTitle,setModalItemTitle] = useState<string>("");
-  const [modalItemId,setModalItemId] = useState<string>("");
+  const [modalItemTitle, setModalItemTitle] = useState<string>("");
+  const [modalItemId, setModalItemId] = useState<string>("");
+  const [userInput, setUserInput] = useState("");
 
-  const openModalAndSetTitle=(title:string,id:string)=>{
-    setModalItemTitle(title)
-    setOpenModal(true)
-    setModalItemId(id)
-  }
+  const openModalAndSetTitle = (title: string, id: string) => {
+    setModalItemTitle(title);
+    setOpenModal(true);
+    setModalItemId(id);
+  };
 
-  const changeTitle = (newTitle:string, id:string)=>{
-    const newTodos = [...todos]
-    const target = newTodos.find(todo=>todo.id === id)
-    target!.title = newTitle
-    setTodos(newTodos)
-  }
-  
+  const changeTitle = (newTitle: string, id: string) => {
+    const newTodos = [...todos];
+    const target = newTodos.find((todo) => todo.id === id);
+    target!.title = newTitle;
+    setTodos(newTodos);
+  };
 
   //Added task to the todo array
   //When called, it would add the new TodoObj to the a copy of todos array
@@ -106,32 +106,49 @@ const App=()=> {
     setTodos(newTodos);
   };
 
+  const changeUserInput = (input: string) => {
+    console.log(input);
+    setUserInput(input);
+  };
+
   //   render() {
 
   return (
     <div>
-
-    <div className="todo-container">
-      <div className="todo-wrap">
-        <TaskBar addTodo={addTodo} />
-        <SortOptions
-          options={["name", "date", "priority level"]}
-          sortTodo={sortTodo}
-        ></SortOptions>
-        <List todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo} openModalAndSetTitleId={openModalAndSetTitle}/>
-        <Bottom
-          todos={todos}
-          checkAllTodo={checkAllTodo}
-          clearAllTodoDone={clearAllTodoDone}
-        />
+      <SearchBar setUserInput={changeUserInput}></SearchBar>
+      <div className="todo-container">
+        <div className="todo-wrap">
+          <TaskBar addTodo={addTodo} />
+          <SortOptions
+            options={["name", "date", "priority level"]}
+            sortTodo={sortTodo}
+          ></SortOptions>
+          <List
+            todos={todos}
+            checkTodo={checkTodo}
+            deleteTodo={deleteTodo}
+            openModalAndSetTitleId={openModalAndSetTitle}
+            filter={userInput}
+          />
+          <Bottom
+            todos={todos}
+            checkAllTodo={checkAllTodo}
+            clearAllTodoDone={clearAllTodoDone}
+          />
+        </div>
       </div>
-      
-    </div>
-    {openModal && <Modal setOpenModal={setOpenModal} title={modalItemTitle} id={modalItemId} changeTodos={changeTitle}></Modal>}
+      {openModal && (
+        <Modal
+          setOpenModal={setOpenModal}
+          title={modalItemTitle}
+          id={modalItemId}
+          changeTodos={changeTitle}
+        ></Modal>
+      )}
       {/* <button onClick={()=>{setOpenModal(true)}}>open</button> */}
     </div>
   );
   //   }
-}
+};
 
 export default App;
