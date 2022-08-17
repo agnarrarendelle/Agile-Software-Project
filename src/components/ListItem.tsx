@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import "./ListItem.css";
 import "./Modal"
-import Modal from "./Modal";
 
 //This Interface defines properties passed to component ListItem
 interface Props {
@@ -45,6 +44,7 @@ function ListItem(props: Props): React.ReactElement {
       <label>
         <input type="checkbox" checked={isDone} onChange={handleChange} onClick={(e)=>{e.stopPropagation()}}/>
         <span>{`   ${title}  ${addedTime}`}</span>
+        
       </label>
       <button className="btn btn-danger" onClick={handleClick}>
         Delete

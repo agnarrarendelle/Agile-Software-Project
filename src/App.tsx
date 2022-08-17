@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import {  useState } from "react";
 import TaskBar from "./components/TaskBar";
 import List from "./components/List";
 import Bottom from "./components/Bottom";
@@ -6,11 +6,6 @@ import SortOptions from "./components/SortOptions";
 import "./App.css";
 import Modal from "./components/Modal"
 
-//This Interface defines the states that App component will maintain
-interface States {
-  //An array of todo tasks that will be modified and updated based on user's actions
-  todos: Array<TodoObJ>;
-}
  
 const App=()=> {
   const [todos, setTodos] = useState<Array<TodoObJ>>([]);

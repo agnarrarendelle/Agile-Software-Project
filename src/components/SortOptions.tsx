@@ -1,5 +1,4 @@
-import { Component, ReactElement, ReactNode } from "react";
-
+ 
 interface Props {
   options: Array<string>;
   sortTodo: (option: string) => void;

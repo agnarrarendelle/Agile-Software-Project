@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import "./TaskBar.css";
 import { nanoid } from "nanoid";
 import PriorityLevelOption from "./PriorityLevelOption";
@@ -9,9 +9,7 @@ interface Props {
   addTodo: (todoObj: TodoObJ) => void;
 }
 
-interface State {
-  priorityLevel: string;
-}
+
 
 function TaskBar(props: Props): React.ReactElement {
   const [priorityLevel, setPriorityLevel] = useState("1");
