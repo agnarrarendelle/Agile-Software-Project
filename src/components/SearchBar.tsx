@@ -1,4 +1,4 @@
-import { useState } from "react";
+import "./SearchBar.css"
 
 interface Prop{
     setUserInput: (input:string)=>void
@@ -12,11 +12,9 @@ const SearchBar = (props:Prop) => {
     }
 
   return (
-    <div className="main">
+    <div className="search-bar">
       <h1>Search for a task</h1>
-      <div className="search">
-        <input type="text" onChange={onSearchBarChange}/>
-      </div>
+        <input className="search-input" type="text" onChange={onSearchBarChange}/>
     </div>
   );
 };

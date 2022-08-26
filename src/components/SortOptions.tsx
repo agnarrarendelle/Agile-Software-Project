@@ -1,4 +1,6 @@
  
+import "./SortOptions.css"
+
 interface Props {
   options: Array<string>;
   sortTodo: (option: string) => void;
@@ -43,7 +45,7 @@ function SortOptions(props: Props): React.ReactElement {
     props.sortTodo(selectedOption);
   };
 
-    return <select onChange={onSelectChange}>{getAllOptions()}</select>;
+    return <select className="select-menu" onChange={onSelectChange}>{getAllOptions()}</select>;
 }
 
 export default SortOptions;
