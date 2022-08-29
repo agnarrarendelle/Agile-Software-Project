@@ -20,6 +20,19 @@ const App = () => {
     setModalItemId(id);
   };
 
+  const addSubTask = (taskName:string,id:string)=>{
+    const newTodos = [...todos];
+    const target = newTodos.find((todo) => todo.id === id);
+    target!.subTasks.push(taskName)
+    setTodos(newTodos);
+
+  }
+
+  const getSubTasks = (id:string)=>{
+    const target = todos.find((todo) => todo.id === id)!;
+    return target.subTasks!
+  }
+
   const changeTitle = (newTitle: string, id: string) => {
     const newTodos = [...todos];
     const target = newTodos.find((todo) => todo.id === id);
@@ -143,6 +156,8 @@ const App = () => {
           title={modalItemTitle}
           id={modalItemId}
           changeTodos={changeTitle}
+          subTasks={getSubTasks(modalItemId)}
+          addSubTask={addSubTask}
         ></Modal>
       )}
       {/* <button onClick={()=>{setOpenModal(true)}}>open</button> */}

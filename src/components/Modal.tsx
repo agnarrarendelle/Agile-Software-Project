@@ -1,11 +1,14 @@
-import {  useRef } from "react";
+import { useRef } from "react";
 import "./Modal.css";
+import SubTaskList from "./SubTaskList";
 
 interface Props {
   setOpenModal: (mode: boolean) => void;
   title: string;
   id: string;
   changeTodos: (newTitle: string, id: string) => void;
+  subTasks: string[];
+  addSubTask: (taskName: string, id: string) => void;
 }
 
 // const Modal=(props:Props)=>{
@@ -15,12 +18,11 @@ interface Props {
 // }
 
 const Modal = (props: Props) => {
+  const newTitle = useRef<HTMLInputElement>(null);
 
-    const newTitle= useRef<HTMLInputElement>(null)
+  // useEffect(()=>{
 
-    // useEffect(()=>{
-
-    // })
+  // })
 
   return (
     <div className="modalBackground">
@@ -38,7 +40,15 @@ const Modal = (props: Props) => {
           <h1>Change the Name of Your Task</h1>
         </div>
         <div className="body">
-          <input type="text" placeholder={props.title} ref={newTitle}/>
+          <input type="text" placeholder={props.title} ref={newTitle} />
+          <div className="sub-tasks">
+            <h3>Sub Tasks</h3>
+            <SubTaskList
+              subTasks={props.subTasks}
+              addSubTasks={props.addSubTask}
+              id={props.id}
+            ></SubTaskList>
+          </div>
         </div>
         <div className="footer">
           <button
