@@ -33,6 +33,7 @@ function TaskBar(props: Props): React.ReactElement {
       isDone: false,
       addedTime: new Date().toLocaleString(),
       priorityLevel: priorityLevel,
+      subTasks:[]
     };
     props.addTodo(todoObj);
 
