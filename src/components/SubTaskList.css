@@ -1,0 +1,36 @@
+.sub-tasks{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.sub-tasks h5{
+    margin: 0;
+}
+
+.sub-tasks input{
+    width: 50%;
+    margin: 0 auto;
+    font-size:15px;
+}
+
+.sub-tasks button{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.sub-tasks ol{
+	text-align: center;
+    padding: 0;
+    font-size: 1rem;
+    list-style-type: decimal
+}
+
+.sub-tasks li{
+    border: none;
+    height: 20px;
+    color: rgb(7, 34, 239);
+}
+
+
