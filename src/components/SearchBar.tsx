@@ -13,8 +13,8 @@ const SearchBar = (props:Prop) => {
 
   return (
     <div className="search-bar">
-      <h1>Search for a task</h1>
-        <input className="search-input" type="text" onChange={onSearchBarChange}/>
+      <h1>Search for Tasks <input className="search-input" type="text" onChange={onSearchBarChange}/>
+      </h1>
     </div>
   );
 };

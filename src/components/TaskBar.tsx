@@ -9,8 +9,6 @@ interface Props {
   addTodo: (todoObj: TodoObJ) => void;
 }
 
-
-
 function TaskBar(props: Props): React.ReactElement {
   const [priorityLevel, setPriorityLevel] = useState("1");
 
@@ -48,15 +46,15 @@ function TaskBar(props: Props): React.ReactElement {
     <div className="task-bar">
       <input
         type="text"
-        placeholder="Please enter your the name of your task"
+        placeholder="Enter a New Task"
         onKeyUp={add}
       />
       <PriorityLevelOption
         setPriorityLevel={getPriorityLevel}
         proorityLevels={[
-          { level: 1, PriorityLevelName: "urgent" },
-          { level: 2, PriorityLevelName: "normal" },
-          { level: 3, PriorityLevelName: "low" },
+          { level: 1, PriorityLevelName: "LOW" },
+          { level: 2, PriorityLevelName: "MEDIUM" },
+          { level: 3, PriorityLevelName: "HIGH" },
         ]}
       ></PriorityLevelOption>
     </div>

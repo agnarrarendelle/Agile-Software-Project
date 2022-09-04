@@ -96,10 +96,10 @@ function Bottom(props: Props): React.ReactElement {
         />
       </label>
       <span>
-        <span>Finished:{doneTasksNum}</span> / All:{totalTasksNum}
+      <span>Finished <b>{doneTasksNum}</b></span> out of <b>{totalTasksNum}</b>
       </span>
       <button className="btn btn-danger" onClick={handleClick}>
-        Clear Finished Tasks
+        Clear Completed
       </button>
     </div>
   );

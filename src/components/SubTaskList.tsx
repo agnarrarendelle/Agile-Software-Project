@@ -31,9 +31,7 @@ const SubTaskList = (props: Props) => {
   return (
     <div className="sub-tasks">
       <ol>{getSubTasks()}</ol>
-      <h5>Add a Sub Task</h5>
-      <input onChange={onTaskNameChange} className="" type="text" />
-
+      <input placeholder="Enter a Sub Task" onChange={onTaskNameChange} className="" type="text" />
       <button onClick={onButtonClicked}>Add</button>
     </div>
   );

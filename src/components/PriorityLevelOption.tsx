@@ -26,9 +26,7 @@ function PriorityLevelOption(props: Props): React.ReactElement {
     });
     return options;
   };
-
-    return <select className="select-menu" onChange={onOptionChange}>{getOptions()}</select>;
-
+  return <select className="select-menu" onChange={onOptionChange}>{getOptions()}</select>;
 }
 
 export default PriorityLevelOption;
