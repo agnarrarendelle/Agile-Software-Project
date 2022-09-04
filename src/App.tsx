@@ -14,6 +14,7 @@ const App = () => {
   const [modalItemId, setModalItemId] = useState<string>("");
   const [userInput, setUserInput] = useState("");
 
+  console.log(openModal)
   const openModalAndSetTitle = (title: string, id: string) => {
     setModalItemTitle(title);
     setOpenModal(true);
@@ -30,7 +31,10 @@ const App = () => {
 
   const getSubTasks = (id:string)=>{
     const target = todos.find((todo) => todo.id === id)!;
-    return target.subTasks!
+    if(!target){
+      return []
+    }
+    return target.subTasks
   }
 
   const changeTitle = (newTitle: string, id: string) => {
@@ -71,6 +75,7 @@ const App = () => {
   const deleteTodo = (id: string) => {
     const newTodos: Array<TodoObJ> = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
+    
   };
 
   //Set all isDone value of TodoObjs in todos array to argument isDone
@@ -98,17 +103,17 @@ const App = () => {
   const sortTodo = (option: string) => {
     const newTodos = [...todos];
     switch (option) {
-      case "date":
-        newTodos.sort((a: TodoObJ, b: TodoObJ) => {
-          return Date.parse(a.addedTime) - Date.parse(b.addedTime);
-        });
-        break;
-      case "name":
+      case "Name":
         newTodos.sort((a: TodoObJ, b: TodoObJ) => {
           return a.title.localeCompare(b.title);
         });
         break;
-      case "priority level":
+      case "Date":
+        newTodos.sort((a: TodoObJ, b: TodoObJ) => {
+          return Date.parse(a.addedTime) - Date.parse(b.addedTime);
+        });
+        break;
+      case "Priority Level":
         newTodos.sort((a: TodoObJ, b: TodoObJ) => {
           return a.priorityLevel.localeCompare(b.priorityLevel);
         });
@@ -131,11 +136,16 @@ const App = () => {
       <SearchBar setUserInput={changeUserInput}></SearchBar>
       <div className="todo-container">
         <div className="todo-wrap">
-          <TaskBar addTodo={addTodo} />
-          <SortOptions
-            options={["name", "date", "priority level"]}
-            sortTodo={sortTodo}
-          ></SortOptions>
+          <div className="todo-add">
+            <TaskBar addTodo={addTodo}/>
+          </div>
+          <hr/>
+          <div className="todo-sort">
+            <SortOptions
+              options={["Name", "Date", "Priority Level"]}
+              sortTodo={sortTodo}
+            ></SortOptions>
+          </div>
           <List
             todos={todos}
             checkTodo={checkTodo}
